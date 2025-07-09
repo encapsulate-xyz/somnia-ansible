@@ -1,0 +1,27 @@
+[Unit]
+Description={{ service_identifier }}
+
+[Service]
+User={{ service_identifier }}
+Group={{ service_identifier }}
+WorkingDirectory={{ node_home_dir }}
+ExecStart={{ node_bin_dir }}/{{ service_identifier }} node \
+    --parameters-preset {{ env }} \
+    --local-parameters.storage-database-directory {{ node_data_dir }} \
+    --local-parameters.metrics-node-id {{ org }}-{{ project }}-{{ env }} \
+    --local-parameters.advertised-hostname validator.somnia.testnet.encapsulate.xyz \
+    --key-file {{ node_key_file_path }} \
+    --local-parameters.protocol-listen-port {{ somnia.validator.ports.protocol_port }} \
+    --local-parameters.data-listen-port {{ somnia.validator.ports.data_port }} \
+    --local-parameters.api-http-port {{ somnia.validator.ports.api_http_port }} \
+    --local-parameters.api-websocket-port {{ somnia.validator.ports.api_ws_port }} \
+    --local-parameters.metrics-port {{ somnia.validator.ports.metrics_port }}
+Restart=always
+RestartSec=4
+LimitNOFILE=65536
+MemoryMax=256GB
+StandardOutput=append:{{ node_log_file_path }}
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

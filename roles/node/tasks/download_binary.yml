@@ -1,0 +1,51 @@
+---
+- name: Add gcloud repo
+  ansible.builtin.deb822_repository:
+    name: gcloud
+    types: deb
+    uris: https://packages.cloud.google.com/apt
+    suites: cloud-sdk
+    components: main
+    signed_by: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+    enabled: true
+
+- name: Install gcloud-cli
+  ansible.builtin.apt:
+    name: google-cloud-cli
+    state: present
+    update_cache: true
+
+- name: Create a tmp directory
+  ansible.builtin.file:
+    path: "{{ tmp_dir }}/{{ project }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0777"
+
+- name: Download somnia binary from Gcloud
+  ansible.builtin.command: >
+    gcloud storage cp gs://somnia-releases/binaries/{{ somnia.validator.version }} {{ node_service_default_binary_name }}
+  args:
+    chdir: "{{ tmp_dir }}/{{ project }}"
+    creates: "{{ tmp_dir }}/{{ project }}/{{ node_service_default_binary_name }}"
+  become: yes
+  become_user: devops
+
+- name: Copy the binary to the target directory
+  ansible.builtin.copy:
+    src: "{{ tmp_dir }}/{{ project }}/{{ node_service_default_binary_name }}"
+    dest: "{{ node_bin_dir }}/{{ service_identifier }}"
+    mode: "0755"
+    owner: root
+    group: root
+    remote_src: true
+    force: true
+  notify:
+    - Restart service
+
+- name: Clean up the tmp directory
+  ansible.builtin.file:
+    path: "{{ tmp_dir }}/{{ project }}"
+    state: absent

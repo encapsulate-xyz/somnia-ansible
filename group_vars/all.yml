@@ -16,25 +16,12 @@ default_node_types:
 
 tmp_dir: /tmp
 
-go:
-  root: /usr/local/go
-  path: "{{ tmp_dir }}/go"
-  module111: "on"
-
-sui:
+somnia:
   validator:
-    source_url: https://releases.sui.io
+    source_url: gs://somnia-releases/binaries
     ports:
-      server_listen_port: 9191
-      metrics_port: 9186
-  fullnode:
-    version: 88888888888
-    source_url: https://releases.sui.io
-    ports:
-      server_listen_port: 9191
-      metrics_port: 9186
-  bridge:
-    source_url: https://releases.sui.io
-    ports:
-      server_listen_port: 9191
-      metrics_port: 9186
+      protocol_port: 9000
+      data_port: 9001
+      api_http_port: 9002
+      api_ws_port: 9003
+      metrics_port: 9004
