@@ -19,7 +19,7 @@ ExecStart={{ node_bin_dir }}/{{ service_identifier }} node \
 Restart=always
 RestartSec=4
 LimitNOFILE=65536
-MemoryMax=256GB
+MemoryMax=256G
 StandardOutput=append:{{ node_log_file_path }}
 StandardError=inherit
 
