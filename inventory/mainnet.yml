@@ -1,0 +1,10 @@
+---
+# maintains mainnet inventory grouped by project names
+all:
+  vars:
+    env: mainnet
+  children:
+    somnia:
+      hosts:
+        validator.somnia.mainnet.encapsulate.xyz:
+          type: validator

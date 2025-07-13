@@ -1,0 +1,5 @@
+---
+# maintains versions and can overwrite all.yml
+somnia:
+  validator:
+    version: somnia-22ee9f177644a33-release
