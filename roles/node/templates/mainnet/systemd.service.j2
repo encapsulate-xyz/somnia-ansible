@@ -15,7 +15,9 @@ ExecStart={{ node_bin_dir }}/{{ service_identifier }} node \
     --local-parameters.data-listen-port {{ somnia.validator.ports.data_port }} \
     --local-parameters.api-http-port {{ somnia.validator.ports.api_http_port }} \
     --local-parameters.api-websocket-port {{ somnia.validator.ports.api_ws_port }} \
-    --local-parameters.metrics-port {{ somnia.validator.ports.metrics_port }}
+    --local-parameters.metrics-port {{ somnia.validator.ports.metrics_port }} \
+    --local-parameters.storage-database-local-parameters.target-database-size-bytes 1099511627776 \
+    --local-parameters.storage-database-local-parameters.prune-check-interval-ms 10000
 Restart=always
 RestartSec=4
 LimitNOFILE=65536
