@@ -1,0 +1,26 @@
+---
+- name: Configure sysctl settings for node
+  ansible.builtin.copy:
+    dest: "/etc/sysctl.d/100-{{ service_identifier }}.conf"
+    content: |
+      # Increase memory mapped files limit
+      vm.max_map_count = 1000000
+
+      # Increase number of allowed open file descriptors
+      fs.nr_open = 1000000
+
+      # Increase max socket buffer
+      net.core.rmem_max = 104857600
+      net.core.wmem_max = 104857600
+
+      # TCP buffer: min, default, max
+      net.ipv4.tcp_rmem = 8192 262144 104857600
+      net.ipv4.tcp_wmem = 8192 262144 104857600
+    owner: root
+    group: root
+    mode: "0644"
+  register: sysctl_settings
+
+- name: Apply sysctl settings
+  ansible.builtin.command: sysctl --system
+  when: sysctl_settings.changed
