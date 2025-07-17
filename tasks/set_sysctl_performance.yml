@@ -1,7 +1,7 @@
 ---
 - name: Configure sysctl settings for node
   ansible.builtin.copy:
-    dest: "/etc/sysctl.d/100-{{ service_identifier }}.conf"
+    dest: "/etc/sysctl.d/101-{{ service_identifier }}.conf"
     content: |
       # Increase memory mapped files limit
       vm.max_map_count = 1000000
