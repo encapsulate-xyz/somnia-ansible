@@ -8,7 +8,7 @@ WorkingDirectory={{ node_home_dir }}
 ExecStart={{ node_bin_dir }}/{{ service_identifier }} node \
     --parameters-preset {{ env }} \
     --local-parameters.storage-database-directory {{ node_data_dir }} \
-    --local-parameters.metrics-node-id {{ org }}-{{ project }}-{{ env }} \
+    --local-parameters.metrics-node-id {{ org }}-{{ env }}-node-1 \
     --local-parameters.advertised-hostname {{ inventory_hostname }} \
     --key-file {{ node_key_file_path }} \
     --local-parameters.protocol-listen-port {{ somnia.validator.ports.protocol_port }} \
