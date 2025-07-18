@@ -31,7 +31,7 @@ The playbook dynamically retrieves secret environment file from HashiCorp Vault.
 `<environment>/<project>/<organization>/<type>/<file_name>`
 
 For example:
-`testnet/somnia/encapsulate/validator/key.json`
+`testnet/somnia/encapsulate/validator/keys.json`
 
 This structure ensures easy organization and secure retrieval of secrets.
 
