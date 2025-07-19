@@ -2,7 +2,7 @@
 # maintains file name, binary names, and anything which is not a directory or path
 
 # config file names
-node_key_file_name: key.json
+node_key_file_name: keys.json
 
 # binary names
 node_service_default_binary_name: somnia

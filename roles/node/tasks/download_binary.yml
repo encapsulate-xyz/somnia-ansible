@@ -25,13 +25,13 @@
     mode: "0777"
 
 - name: Download somnia binary from Gcloud
-  ansible.builtin.command: >
-    gcloud storage cp gs://somnia-releases/binaries/{{ somnia.validator.version }} {{ node_service_default_binary_name }}
+  ansible.builtin.shell: >
+    sudo -u devops -- gcloud storage cp
+    "gs://somnia-releases/binaries/{{ somnia.validator.version }}"
+    "{{ node_service_default_binary_name }}"
   args:
     chdir: "{{ tmp_dir }}/{{ project }}"
     creates: "{{ tmp_dir }}/{{ project }}/{{ node_service_default_binary_name }}"
-  become: yes
-  become_user: devops
 
 - name: Copy the binary to the target directory
   ansible.builtin.copy:
