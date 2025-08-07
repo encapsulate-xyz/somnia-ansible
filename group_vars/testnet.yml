@@ -2,4 +2,4 @@
 # maintains versions and can overwrite all.yml
 somnia:
   validator:
-    version: somnia-00c204fe67dfcd1-release
+    version: somnia-4378963c6394cdd-release
