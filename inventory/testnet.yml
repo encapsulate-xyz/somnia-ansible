@@ -8,3 +8,5 @@ all:
       hosts:
         validator.somnia.testnet.encapsulate.xyz:
           type: validator
+        157.90.3.253:
+          type: validator
