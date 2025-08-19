@@ -10,6 +10,7 @@ ExecStart={{ node_bin_dir }}/{{ service_identifier }} node \
     --local-parameters.storage-database-directory {{ node_data_dir }} \
     --local-parameters.metrics-node-id {{ org }}-{{ env }}-{{ type }}-1 \
     --local-parameters.advertised-hostname {{ inventory_hostname }} \
+    --key-file {{ node_key_file_path }} \
     --local-parameters.protocol-listen-port {{ somnia.validator.ports.protocol_port }} \
     --local-parameters.data-listen-port {{ somnia.validator.ports.data_port }} \
     --local-parameters.api-http-port {{ somnia.validator.ports.api_http_port }} \
