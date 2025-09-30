@@ -3,9 +3,3 @@
 somnia:
   validator:
     version: somnia-3e094e96eab9d76-release
-    ports:
-      protocol_port: 9005
-      data_port: 9006
-      api_http_port: 9007
-      api_ws_port: 9008
-      metrics_port: 9009
