@@ -1,0 +1,6 @@
+# This file contains ignores rule violations for ansible-lint
+roles/decommission_service/tasks/main.yml ignore-errors
+roles/decommission_service/tasks/main.yml var-naming[no-role-prefix]
+roles/decommission_service/tasks/main.yml yaml[trailing-spaces]
+tasks/set_sysctl_performance.yml no-changed-when
+tasks/set_sysctl_performance.yml no-handler
